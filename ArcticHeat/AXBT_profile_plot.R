@@ -23,7 +23,7 @@ png(filename=save_file,
 ### Using ggplot2
 p <- ggplot(axbt.data, aes(x=X.C.,y=Depth))
 p <- p + geom_point(color='red', cex=0.25)
-p <- p + scale_y_continuous(trans='reverse')
+p <- p + scale_y_continuous(trans='reverse', limits=c(NaN,0))
 p <- p + ggtitle(basename(myfile))
 p
 
