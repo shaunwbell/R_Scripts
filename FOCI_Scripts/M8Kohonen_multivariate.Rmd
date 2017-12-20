@@ -1,0 +1,54 @@
+---
+title: "BS Ice Kohonen analysis - Multivariate (ICE and MSLP)"
+output:
+  html_notebook: default
+  pdf_document: default
+---
+
+Using 8day averaged ice concentration data (S.Salo)
+Choose a select group of locations on grid. (every 4th point)
+
+```{r}
+dp = read.csv('/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/coords_subset_4pt_noland.asc2',header=TRUE,sep='')
+
+```
+---
+Using NCEP Reanalysis II mean-daily mslp on a grid bounded by 180W-155W, 52N-72.5N
+Equivalent 8day averages are made (with the exception of the last chunk of the year.  Salo has 359-001, this is 359-365)
+
+1979 DJ - 2017 DJ
+Both files are on same time grid (which is the list of files from the DJ subset)
+'NCEP_mslp_grid.txt'
+
+---
+```{r}
+library(kohonen)
+
+ice_data = read.csv('/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/1979-2016_4pt_noland_DF.asc')
+
+mslp_data = read.csv('/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/1979-2017_NCEPmslp.csv')
+```
+With variables read in, run multivariate SOM analysis.  Weight ice-75% and mslp-25%
+Do not scale any variables
+```{r}
+xyf.BS <- xyf(scale(mslp_data,scale=FALSE,center=FALSE),scale(ice_data,scale=FALSE,center=FALSE),grid=somgrid(3,3,"hexagonal"),user.weights=c(0.25,0.75),maxNA.fraction=1,rlen=100)
+
+summary(xyf.BS)
+
+map(xyf.BS)
+```
+
+```{r}
+getCodes(xyf.BS)
+```
+```{r}
+plot(xyf.BS,"codes")
+
+plot(xyf.BS,"quality")
+
+plot(xyf.BS,"counts")
+
+plot(xyf.BS,"changes")
+
+plot(xyf.BS, type="dist.neighbours")
+```
