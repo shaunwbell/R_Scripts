@@ -1666,7 +1666,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("M8Kohonen_multivariate.Rmd");
+  window.initializeSourceEmbed("M8Kohonen_multivariate_temp.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
@@ -1704,9 +1704,9 @@ $(document).ready(function () {
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Using NCEP Reanalysis II mean-daily mslp on a grid bounded by 180W-155W, 52N-72.5N Equivalent 8day averages are made (with the exception of the last chunk of the year. Salo has 359-001, this is 359-365)</p>
-<p>1979 DJ - 2017 DJ Both files are on same time grid (which is the list of files from the DJ subset) ‘NCEP_mslp_grid.txt’</p>
-<p>Stagger MSLP so that it leads ICE by one 8day period</p>
+<p>Using NCEP Reanalysis II mean-daily 2m air temperature on four grid points (181.875,65.712 193.125,65.712 181.875,58.0939 193.125,58.0939)</p>
+<p>Equivalent 8day averages are made (with the exception of the last chunk of the year. Salo has 359-001, this is 359-365)</p>
+<p>1979 DJ - 2017 DJ Both files are on same time grid (which is the list of files from the DJ subset) ‘coords_ncep_temp.asc2’</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShrb2hvbmVuKVxuYGBgIn0= -->
@@ -1721,7 +1721,7 @@ mslp_data = read.csv('/Volumes/WDC_internal/Users/bell/in_and_outbox/2017/staben
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>With variables read in, run multivariate SOM analysis. Weight ice-75% and mslp-25% Do not scale any variables</p>
+<p>With variables read in, run multivariate SOM analysis. Weight ice-75% and temp-25% Do not scale any variables</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueHlmLkJTIDwtIHh5ZihzY2FsZShtc2xwX2RhdGEsc2NhbGU9RkFMU0UsY2VudGVyPVRSVUUpLHNjYWxlKGljZV9kYXRhLHNjYWxlPUZBTFNFLGNlbnRlcj1GQUxTRSksZ3JpZD1zb21ncmlkKDMsMyxcImhleGFnb25hbFwiKSx1c2VyLndlaWdodHM9YygwLjAxLDAuOTkpLG1heE5BLmZyYWN0aW9uPTEscmxlbj0xMDApXG5zdW1tYXJ5KHh5Zi5CUylcbmBgYCJ9 -->
@@ -2038,7 +2038,7 @@ V9 98.718424 98.55958 98.350891 98.63247 98.81937 98.73427 98.74769 98.84305 98.
 <!-- rnb-plot-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQlMgSWNlIEtvaG9uZW4gYW5hbHlzaXMgLSBNdWx0aXZhcmlhdGUgKElDRSBhbmQgTVNMUCkiCm91dHB1dDoKICBodG1sX25vdGVib29rOiBkZWZhdWx0CiAgcGRmX2RvY3VtZW50OiBkZWZhdWx0Ci0tLQoKVXNpbmcgOGRheSBhdmVyYWdlZCBpY2UgY29uY2VudHJhdGlvbiBkYXRhIChTLlNhbG8pCkNob29zZSBhIHNlbGVjdCBncm91cCBvZiBsb2NhdGlvbnMgb24gZ3JpZC4gKGV2ZXJ5IDR0aCBwb2ludCkKCmBgYHtyfQpkcCA9IHJlYWQuY3N2KCcvVm9sdW1lcy9XRENfaW50ZXJuYWwvVXNlcnMvYmVsbC9pbl9hbmRfb3V0Ym94LzIwMTcvc3RhYmVuby9JY2Vfa29ob25lbi9jb29yZHNfc3Vic2V0XzRwdF9ub2xhbmQuYXNjMicsaGVhZGVyPVRSVUUsc2VwPScnKQoKYGBgClVzaW5nIE5DRVAgUmVhbmFseXNpcyBJSSBtZWFuLWRhaWx5IG1zbHAgb24gYSBncmlkIGJvdW5kZWQgYnkgMTgwVy0xNTVXLCA1Mk4tNzIuNU4KRXF1aXZhbGVudCA4ZGF5IGF2ZXJhZ2VzIGFyZSBtYWRlICh3aXRoIHRoZSBleGNlcHRpb24gb2YgdGhlIGxhc3QgY2h1bmsgb2YgdGhlIHllYXIuICBTYWxvIGhhcyAzNTktMDAxLCB0aGlzIGlzIDM1OS0zNjUpCgoxOTc5IERKIC0gMjAxNyBESgpCb3RoIGZpbGVzIGFyZSBvbiBzYW1lIHRpbWUgZ3JpZCAod2hpY2ggaXMgdGhlIGxpc3Qgb2YgZmlsZXMgZnJvbSB0aGUgREogc3Vic2V0KQonTkNFUF9tc2xwX2dyaWQudHh0JwoKU3RhZ2dlciBNU0xQIHNvIHRoYXQgaXQgbGVhZHMgSUNFIGJ5IG9uZSA4ZGF5IHBlcmlvZApgYGB7cn0KbGlicmFyeShrb2hvbmVuKQoKaWNlX2RhdGEgPSByZWFkLmNzdignL1ZvbHVtZXMvV0RDX2ludGVybmFsL1VzZXJzL2JlbGwvaW5fYW5kX291dGJveC8yMDE3L3N0YWJlbm8vSWNlX2tvaG9uZW4vMTk3OS0yMDE2XzRwdF9ub2xhbmRfREYuYXNjJykKCm1zbHBfZGF0YSA9IHJlYWQuY3N2KCcvVm9sdW1lcy9XRENfaW50ZXJuYWwvVXNlcnMvYmVsbC9pbl9hbmRfb3V0Ym94LzIwMTcvc3RhYmVuby9JY2Vfa29ob25lbi8xOTc5LTIwMTdfTkNFUG1zbHBfcDhkLmNzdicpCmBgYApXaXRoIHZhcmlhYmxlcyByZWFkIGluLCBydW4gbXVsdGl2YXJpYXRlIFNPTSBhbmFseXNpcy4gIFdlaWdodCBpY2UtNzUlIGFuZCBtc2xwLTI1JQpEbyBub3Qgc2NhbGUgYW55IHZhcmlhYmxlcwpgYGB7cn0KeHlmLkJTIDwtIHh5ZihzY2FsZShtc2xwX2RhdGEsc2NhbGU9RkFMU0UsY2VudGVyPVRSVUUpLHNjYWxlKGljZV9kYXRhLHNjYWxlPUZBTFNFLGNlbnRlcj1GQUxTRSksZ3JpZD1zb21ncmlkKDMsMywiaGV4YWdvbmFsIiksdXNlci53ZWlnaHRzPWMoMC4wMSwwLjk5KSxtYXhOQS5mcmFjdGlvbj0xLHJsZW49MTAwKQoKc3VtbWFyeSh4eWYuQlMpCgptYXAoeHlmLkJTKQpgYGAKCmBgYHtyfQpnZXRDb2Rlcyh4eWYuQlMpCmBgYApgYGB7cn0KcGxvdCh4eWYuQlMsImNvZGVzIikKCnBsb3QoeHlmLkJTLCJxdWFsaXR5IikKCnBsb3QoeHlmLkJTLCJjb3VudHMiKQoKcGxvdCh4eWYuQlMsImNoYW5nZXMiKQoKcGxvdCh4eWYuQlMsIHR5cGU9ImRpc3QubmVpZ2hib3VycyIpCmBgYA==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQlMgSWNlIEtvaG9uZW4gYW5hbHlzaXMgLSBNdWx0aXZhcmlhdGUgKElDRSBhbmQgTVNMUCkiCm91dHB1dDoKICBodG1sX25vdGVib29rOiBkZWZhdWx0CiAgcGRmX2RvY3VtZW50OiBkZWZhdWx0Ci0tLQoKVXNpbmcgOGRheSBhdmVyYWdlZCBpY2UgY29uY2VudHJhdGlvbiBkYXRhIChTLlNhbG8pCkNob29zZSBhIHNlbGVjdCBncm91cCBvZiBsb2NhdGlvbnMgb24gZ3JpZC4gKGV2ZXJ5IDR0aCBwb2ludCkKCmBgYHtyfQpkcCA9IHJlYWQuY3N2KCcvVm9sdW1lcy9XRENfaW50ZXJuYWwvVXNlcnMvYmVsbC9pbl9hbmRfb3V0Ym94LzIwMTcvc3RhYmVuby9JY2Vfa29ob25lbi9jb29yZHNfc3Vic2V0XzRwdF9ub2xhbmQuYXNjMicsaGVhZGVyPVRSVUUsc2VwPScnKQoKYGBgClVzaW5nIE5DRVAgUmVhbmFseXNpcyBJSSBtZWFuLWRhaWx5IDJtIGFpciB0ZW1wZXJhdHVyZSBvbiBmb3VyIGdyaWQgcG9pbnRzICgxODEuODc1LDY1LjcxMiAxOTMuMTI1LDY1LjcxMiAxODEuODc1LDU4LjA5MzkgMTkzLjEyNSw1OC4wOTM5KQoKRXF1aXZhbGVudCA4ZGF5IGF2ZXJhZ2VzIGFyZSBtYWRlICh3aXRoIHRoZSBleGNlcHRpb24gb2YgdGhlIGxhc3QgY2h1bmsgb2YgdGhlIHllYXIuICBTYWxvIGhhcyAzNTktMDAxLCB0aGlzIGlzIDM1OS0zNjUpCgoxOTc5IERKIC0gMjAxNyBESgpCb3RoIGZpbGVzIGFyZSBvbiBzYW1lIHRpbWUgZ3JpZCAod2hpY2ggaXMgdGhlIGxpc3Qgb2YgZmlsZXMgZnJvbSB0aGUgREogc3Vic2V0KQonY29vcmRzX25jZXBfdGVtcC5hc2MyJwoKYGBge3J9CmxpYnJhcnkoa29ob25lbikKCmljZV9kYXRhID0gcmVhZC5jc3YoJy9Wb2x1bWVzL1dEQ19pbnRlcm5hbC9Vc2Vycy9iZWxsL2luX2FuZF9vdXRib3gvMjAxNy9zdGFiZW5vL0ljZV9rb2hvbmVuLzE5NzktMjAxNl80cHRfbm9sYW5kX0RGLmFzYycpCgp0ZW1wX2RhdGEgPSByZWFkLmNzdignL1ZvbHVtZXMvV0RDX2ludGVybmFsL1VzZXJzL2JlbGwvaW5fYW5kX291dGJveC8yMDE3L3N0YWJlbm8vSWNlX2tvaG9uZW4vMTk3OS0yMDE3X05DRVBfMm10ZW1wLmNzdicpCmBgYApXaXRoIHZhcmlhYmxlcyByZWFkIGluLCBydW4gbXVsdGl2YXJpYXRlIFNPTSBhbmFseXNpcy4gIFdlaWdodCBpY2UtNzUlIGFuZCB0ZW1wLTI1JQpEbyBub3Qgc2NhbGUgYW55IHZhcmlhYmxlcwpgYGB7cn0KeHlmLkJTIDwtIHh5ZihzY2FsZSh0ZW1wX2RhdGEsc2NhbGU9RkFMU0UsY2VudGVyPUZBTFNFKSxzY2FsZShpY2VfZGF0YSxzY2FsZT1GQUxTRSxjZW50ZXI9RkFMU0UpLGdyaWQ9c29tZ3JpZCgzLDMsImhleGFnb25hbCIpLHVzZXIud2VpZ2h0cz1jKDAuMjUsMC43NSksbWF4TkEuZnJhY3Rpb249MSxybGVuPTUwMCkKCnN1bW1hcnkoeHlmLkJTKQoKbWFwKHh5Zi5CUykKYGBgCgpgYGB7cn0KZ2V0Q29kZXMoeHlmLkJTKQpgYGAKYGBge3J9CnBsb3QoeHlmLkJTLCJjb2RlcyIpCgpwbG90KHh5Zi5CUywicXVhbGl0eSIpCgpwbG90KHh5Zi5CUywiY291bnRzIikKCnBsb3QoeHlmLkJTLCJjaGFuZ2VzIikKCnBsb3QoeHlmLkJTLCB0eXBlPSJkaXN0Lm5laWdoYm91cnMiKQpgYGA=</div>
 
 
 

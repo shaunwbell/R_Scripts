@@ -1,0 +1,83 @@
+---
+title: "BS Ice Kohonen analysis - Multivariate (ICE and MSLP)"
+output:
+  html_notebook: default
+  pdf_document: default
+---
+
+Using 8day averaged ice concentration data (S.Salo)
+Choose a select group of locations on grid. (every 4th point)
+
+```{r}
+dp = read.csv('/Volumes/WDC_internal/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/coords_subset_4pt_noland.asc2',header=TRUE,sep='')
+
+```
+Using NCEP Reanalysis II mean-daily 2m air temperature on four grid points (p1-181.875,65.712 p2-193.125,65.712 p3-181.875,58.0939 p4-193.125,58.0939)
+
+Equivalent 8day averages are made (with the exception of the last chunk of the year.  Salo has 359-001, this is 359-365)
+
+1979 DJ - 2017 DJ
+Both files are on same time grid (which is the list of files from the DJ subset)
+'coords_ncep_temp.asc2'
+
+'NCEP_mslp_grid.txt'
+
+Stagger MSLP and Temperature so that it leads ICE by one 8day period
+```{r}
+library(kohonen)
+
+ice_data = data.matrix(read.csv('/Volumes/WDC_internal/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/1979-2016_4pt_noland_DF.asc')) / 100.
+
+temp_noscale = data.matrix(read.csv('/Volumes/WDC_internal/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/1979-2017_NCEP_2mtemp_p8d.csv'))
+temp_data = scale(temp_noscale,center=TRUE,scale=TRUE)
+
+mslp_noscale = data.matrix(read.csv('/Volumes/WDC_internal/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/1979-2017_NCEPmslp_p8d.csv'))
+mslp_data = scale(mslp_data,center=TRUE,scale=TRUE)
+
+bering_data <- list(ice = ice_data, temperature = temp_data, mslp = mslp_data)
+```
+With variables read in, run multivariate SOM analysis.  Weight ice-70% and temp-0% and mslp-30%
+
+Scale temperature and pressure (-1,1) and redefine Ice to (0,1)
+```{r}
+
+set.seed(7)
+
+ssom.BS <- supersom(bering_data,grid=somgrid(3,4,"hexagonal"),user.weights=c(0.70,0.3),whatmap=c(1,3),maxNA.fraction=1,rlen=1000)
+
+summary(ssom.BS)
+
+map(ssom.BS)
+```
+
+```{r}
+getCodes(ssom.BS)
+```
+```{r}
+
+coolBlueHotRed <- function(n, alpha = 1) {rainbow(n, end=4/6, alpha=alpha)[n:1]}
+colfunc <- colorRampPalette(c("blue","white","red"))
+prange = c(-30,15)
+```
+
+```{r}
+plot(ssom.BS,"codes",codeRendering="lines")
+
+plot(ssom.BS,"quality")
+
+plot(ssom.BS,"counts")
+
+plot(ssom.BS,"changes")
+
+#plot(ssom.BS, type="dist.neighbours")
+
+var_unscaled <- aggregate(as.numeric(temp_noscale[,1]), by=list(ssom.BS$unit.classif), FUN=mean, simplify=TRUE)[,2]
+plot(ssom.BS, type="property",property=var_unscaled,main='Temp-p1',palette.name = colfunc,zlim=prange)
+var_unscaled <- aggregate(as.numeric(temp_noscale[,2]), by=list(ssom.BS$unit.classif), FUN=mean, simplify=TRUE)[,2]
+plot(ssom.BS, type="property",property=var_unscaled,main='Temp-p2',palette.name = colfunc,zlim=prange)
+var_unscaled <- aggregate(as.numeric(temp_noscale[,3]), by=list(ssom.BS$unit.classif), FUN=mean, simplify=TRUE)[,2]
+plot(ssom.BS, type="property",property=var_unscaled,main='Temp-p3',palette.name = colfunc,zlim=prange)
+var_unscaled <- aggregate(as.numeric(temp_noscale[,4]), by=list(ssom.BS$unit.classif), FUN=mean, simplify=TRUE)[,2]
+plot(ssom.BS, type="property",property=var_unscaled,main='Temp-p4',palette.name = colfunc,zlim=prange)
+
+```
