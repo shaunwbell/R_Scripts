@@ -9,7 +9,7 @@ Using 8day averaged ice concentration data (S.Salo)
 Choose a select group of locations on grid. (every 4th point)
 
 ```{r}
-dp = read.csv('/Volumes/WDC_internal/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/coords_subset_4pt_noland.asc2',header=TRUE,sep='')
+dp = read.csv('/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/coords_subset_4pt_noland.asc2',header=TRUE,sep='')
 
 ```
 Using NCEP Reanalysis II mean-daily 2m air temperature on four grid points (p1-181.875,65.712 p2-193.125,65.712 p3-181.875,58.0939 p4-193.125,58.0939) - Temp does not seem to provide more guidance.
@@ -22,16 +22,16 @@ Both files are on same time grid (which is the list of files from the DJ subset)
 
 'NCEP_mslp_grid.txt'
 
-Stagger MSLP and Temperature so that it leads ICE by one 8day period
+Stagger MSLP and Temperature so that it leads ICE by one 8day period (for 12day add 4 additional days to start of period)
 ```{r}
 library(kohonen)
 
-ice_data = data.matrix(read.csv('/Volumes/WDC_internal/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/1979-2016_4pt_noland_DF.asc')) / 100.
+ice_data = data.matrix(read.csv('/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/1979-2016_4pt_noland_DF.asc')) / 100.
 
-temp_noscale = data.matrix(read.csv('/Volumes/WDC_internal/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/1979-2017_NCEP_2mtemp_p8d.csv'))
+temp_noscale = data.matrix(read.csv('/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/1979-2017_NCEP_2mtemp_p8d.csv'))
 temp_data = scale(temp_noscale,center=TRUE,scale=TRUE)
 
-mslp_noscale = data.matrix(read.csv('/Volumes/WDC_internal/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/1979-2017_NCEPmslp_p8d.csv'))
+mslp_noscale = data.matrix(read.csv('/Users/bell/in_and_outbox/2017/stabeno/Ice_kohonen/1979-2017_NCEPmslp_p12d.csv'))
 mslp_data = scale(mslp_noscale,center=TRUE,scale=TRUE)
 
 bering_data <- list(ice = ice_data, temperature = temp_data, mslp = mslp_data)
