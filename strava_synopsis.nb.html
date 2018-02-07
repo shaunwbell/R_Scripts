@@ -1699,10 +1699,10 @@ $(document).ready(function () {
 <p>From downloaded activities - Strava webpage</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzdHJhdmEpXG5saWJyYXJ5KHRpZHl2ZXJzZSlcbmRhdGEgPC0gcHJvY2Vzc19kYXRhKCcvVm9sdW1lcy9XRENfaW50ZXJuYWwvVXNlcnMvYmVsbC9Eb3dubG9hZHMvcnVua2VlcGVyLWRhdGEtZXhwb3J0L2dweCcpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzdHJhdmEpXG5saWJyYXJ5KHRpZHl2ZXJzZSlcbmRhdGEgPC0gcHJvY2Vzc19kYXRhKCcvVm9sdW1lcy9XRENfaW50ZXJuYWwvVXNlcnMvYmVsbC9zY3JhdGNoL2RyaWZ0ZXJzLzIwMTcvJylcbmBgYCJ9 -->
 <pre class="r"><code>library(strava)
 library(tidyverse)
-data &lt;- process_data('/Volumes/WDC_internal/Users/bell/Downloads/runkeeper-data-export/gpx')</code></pre>
+data &lt;- process_data('/Volumes/WDC_internal/Users/bell/scratch/drifters/2017/')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1718,8 +1718,8 @@ ggsave(&quot;plots/facets001.png&quot;, p1, width = 20, height = 20, units = &qu
 <p>Acivities map</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucDIgPC0gcGxvdF9tYXAoZGF0YSwgbG9uX21pbiA9IC0xMjUsIGxvbl9tYXggPSAtMTIwLCBsYXRfbWluID0gNDAsIGxhdF9tYXggPSA1MClcbmdnc2F2ZShcInBsb3RzL21hcDAwMS5wbmdcIiwgcDIsIHdpZHRoID0gMjAsIGhlaWdodCA9IDE1LCB1bml0cyA9IFwiY21cIiwgZHBpID0gNjAwKVxuYGBgIn0= -->
-<pre class="r"><code>p2 &lt;- plot_map(data, lon_min = -125, lon_max = -120, lat_min = 40, lat_max = 50)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucDIgPC0gcGxvdF9tYXAoZGF0YSwgbG9uX21pbiA9IC0xODAsIGxvbl9tYXggPSAtMTQwLCBsYXRfbWluID0gNDAsIGxhdF9tYXggPSA4MClcbmdnc2F2ZShcInBsb3RzL21hcDAwMS5wbmdcIiwgcDIsIHdpZHRoID0gMjAsIGhlaWdodCA9IDE1LCB1bml0cyA9IFwiY21cIiwgZHBpID0gNjAwKVxuYGBgIn0= -->
+<pre class="r"><code>p2 &lt;- plot_map(data, lon_min = -180, lon_max = -140, lat_min = 40, lat_max = 80)
 ggsave(&quot;plots/map001.png&quot;, p2, width = 20, height = 15, units = &quot;cm&quot;, dpi = 600)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1732,7 +1732,7 @@ ggsave(&quot;plots/elevations001.png&quot;, p3, width = 20, height = 20, units =
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBTdHJhdmEiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCkZyb20gZG93bmxvYWRlZCBhY3Rpdml0aWVzIC0gU3RyYXZhIHdlYnBhZ2UKCmBgYHtyfQpsaWJyYXJ5KHN0cmF2YSkKbGlicmFyeSh0aWR5dmVyc2UpCgoKZGF0YSA8LSBwcm9jZXNzX2RhdGEoJy9Wb2x1bWVzL1dEQ19pbnRlcm5hbC9Vc2Vycy9iZWxsL0Rvd25sb2Fkcy9ydW5rZWVwZXItZGF0YS1leHBvcnQvZ3B4JykKCgpgYGAKCkZhY2V0cyBQbG90OgpgYGB7cn0KCnAxIDwtIHBsb3RfZmFjZXRzKGRhdGEpCmdnc2F2ZSgicGxvdHMvZmFjZXRzMDAxLnBuZyIsIHAxLCB3aWR0aCA9IDIwLCBoZWlnaHQgPSAyMCwgdW5pdHMgPSAiY20iKQoKYGBgCgpBY2l2aXRpZXMgbWFwCmBgYHtyfQoKcDIgPC0gcGxvdF9tYXAoZGF0YSwgbG9uX21pbiA9IC0xMjUsIGxvbl9tYXggPSAtMTIwLCBsYXRfbWluID0gNDAsIGxhdF9tYXggPSA1MCkKZ2dzYXZlKCJwbG90cy9tYXAwMDEucG5nIiwgcDIsIHdpZHRoID0gMjAsIGhlaWdodCA9IDE1LCB1bml0cyA9ICJjbSIsIGRwaSA9IDYwMCkKCmBgYAoKYGBge3J9CnAzIDwtIHBsb3RfZWxldmF0aW9ucyhkYXRhKQpnZ3NhdmUoInBsb3RzL2VsZXZhdGlvbnMwMDEucG5nIiwgcDMsIHdpZHRoID0gMjAsIGhlaWdodCA9IDIwLCB1bml0cyA9ICJjbSIpCgpgYGAK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBTdHJhdmEiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCkZyb20gZG93bmxvYWRlZCBhY3Rpdml0aWVzIC0gU3RyYXZhIHdlYnBhZ2UKCmBgYHtyfQpsaWJyYXJ5KHN0cmF2YSkKbGlicmFyeSh0aWR5dmVyc2UpCgoKZGF0YSA8LSBwcm9jZXNzX2RhdGEoJy9Wb2x1bWVzL1dEQ19pbnRlcm5hbC9Vc2Vycy9iZWxsL3NjcmF0Y2gvZHJpZnRlcnMvMjAxNy8nKQoKCmBgYAoKRmFjZXRzIFBsb3Q6CmBgYHtyfQoKcDEgPC0gcGxvdF9mYWNldHMoZGF0YSkKZ2dzYXZlKCJwbG90cy9mYWNldHMwMDEucG5nIiwgcDEsIHdpZHRoID0gMjAsIGhlaWdodCA9IDIwLCB1bml0cyA9ICJjbSIpCgpgYGAKCkFjaXZpdGllcyBtYXAKYGBge3J9CgpwMiA8LSBwbG90X21hcChkYXRhLCBsb25fbWluID0gLTE4MCwgbG9uX21heCA9IC0xNDAsIGxhdF9taW4gPSA0MCwgbGF0X21heCA9IDgwKQpnZ3NhdmUoInBsb3RzL21hcDAwMS5wbmciLCBwMiwgd2lkdGggPSAyMCwgaGVpZ2h0ID0gMTUsIHVuaXRzID0gImNtIiwgZHBpID0gNjAwKQoKYGBgCgpgYGB7cn0KcDMgPC0gcGxvdF9lbGV2YXRpb25zKGRhdGEpCmdnc2F2ZSgicGxvdHMvZWxldmF0aW9uczAwMS5wbmciLCBwMywgd2lkdGggPSAyMCwgaGVpZ2h0ID0gMjAsIHVuaXRzID0gImNtIikKCmBgYAo=</div>
 
 
 
